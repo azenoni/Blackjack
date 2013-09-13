@@ -8,8 +8,11 @@ public class Array {
 		// int [] b = {1, 2, 3, 4, 5};
 		// sum(b);
 
-		int [] c = {1, 2, 3, 4, 5, 6};
-		element(c);
+		// int [] c = {1, 2, 3, 4, 5, 6};
+		// element(c);
+
+		int [] d = {-12, -24, -3, -49, -56};
+		small(d);
 
 		// for (int i=0; i<data.length; i++) {
 		// 	data[i] = 10;
@@ -44,6 +47,22 @@ public class Array {
 		System.out.println("Second Largest Variable " + secondLarge);
 
 		return c;
+	}
+
+	public static int[] small(int[] d) {
+		int closest = d[0];
+		for (int i = 0; i < d.length; i++) {
+			if (d[i] > 0 && d[i]< closest) {
+				closest = d[i];
+				
+			}
+
+			if (d[i] < 0 && d[i] > closest) {
+				closest = d[i];
+			}
+		}
+		System.out.println("Number closest to zero: " + closest);
+		return d;
 	}
 
 	public static int[] sum(int[] b) {
