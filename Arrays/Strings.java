@@ -1,6 +1,9 @@
 public class Strings {
 	
 	public static void main(String[] args) {
+
+		//greenteapress.com
+
 		String str = new String("A string");
 		String s = "A String";
 
@@ -28,6 +31,7 @@ public class Strings {
 		//System.out.println(hasAnA("Hamburger"));
 
 		//System.out.println(isPalindrome("Racecar"));
+		//dsf
 
 		System.out.println(isAbecedarian("Yolo"));
 
