@@ -9,7 +9,9 @@ public class multi {
 		//sumRow(a, 0);
 		//sumCol(a, 1);
 		//sumTotal(a);
-		reverseRow(a , 1);
+		//reverseRow(a , 1);
+		//reverseCol(a , 0);
+		snakeDraft(10, 3);
 
 	}
 
@@ -65,7 +67,21 @@ public class multi {
 	}
 
 	public static int[][] reverseCol(int [][] a, int x) {
-		
+		for (int c = a.length; c >= 0; c--) {
+			System.out.print(a[c][x] + " ");
+		}
+		return a;
+	}
+
+	public static int[][] snakeDraft(int players, int rounds) {
+		int[][] x = new int[rounds][players];
+		while (rounds > 0) {
+			System.out.print(x);
+			rounds--;
+		}
+		System.out.print(x);
+
+		return x;
 	}
 
 
