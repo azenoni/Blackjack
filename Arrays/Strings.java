@@ -33,7 +33,13 @@ public class Strings {
 		//System.out.println(isPalindrome("Racecar"));
 		//dsf
 
-		System.out.println(isAbecedarian("Yolo"));
+		//System.out.println("biopsy:" + isAbecedarian("biopsy"));
+		//System.out.println("Yolo: " + isAbecedarian("Yolo"));
+
+
+		//System.out.println(isDupledrome("llaammaa"));
+
+		captainCrunch("cDeF", 13);
 
 		// System.out.println(isPalindrome("racecar"));
 
@@ -72,13 +78,43 @@ public class Strings {
 	}
 
 	public static boolean isAbecedarian(String s) {
-		for (int i = 0; i <= s.length(); i++) {
-			if (s.charAt(i) <= s.charAt(i+1)) {
-				return true;
-			} 
+		for (int i = 0; i < s.length()-1; i++) {
+			if (s.charAt(i) > s.charAt(i+1)) {
+				return false;
+			}
 		}
 
-		return false;
+		return true;
+	}
+
+	public static boolean isDupledrome(String s) {
+		for (int i = 0; i< s.length()-1; i+=2 ) {
+			if (s.charAt(i) != s.charAt(i+1)) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	public static void captainCrunch(String s, int x) {
+		char value;
+		char value26 = 26;
+		String finalValue = "";
+
+		System.out.println("Decoded: " + s);
+
+		for (int i = 0; i < s.length(); i++) {
+			value = (char)(s.charAt(i) + x);
+			if (s.charAt(i) < 91 && value > 90 ) {
+				value = (char)(s.charAt(i) - 13);
+			}
+			if (s.charAt(i) < 123 && s.charAt(i) > 96 && value > 122 ) {
+				value = (char)(s.charAt(i) - 13);
+			}
+
+			finalValue = finalValue + value;
+		}
+		System.out.println("Encoded: " + finalValue);
 	}
 
 	public static boolean contains(String s, String t) {
