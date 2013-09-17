@@ -8,7 +8,8 @@ public class multi {
 
 		//sumRow(a, 0);
 		//sumCol(a, 1);
-		sumTotal(a);
+		//sumTotal(a);
+		reverseRow(a , 1);
 
 	}
 
@@ -53,8 +54,22 @@ public class multi {
 
 		System.out.println(sum);
 		return sum;
-
-
-
 	}
+
+	public static int[][] reverseRow(int [][] a, int x) {
+		for (int r = a.length + 1; r >= 0; r--) {
+			System.out.print(a[x][r] + " ");
+		}
+
+		return a;
+	}
+
+	public static int[][] reverseCol(int [][] a, int x) {
+		
+	}
+
+
+
+
+
 }
