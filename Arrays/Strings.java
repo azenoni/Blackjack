@@ -33,11 +33,11 @@ public class Strings {
 		//System.out.println(isPalindrome("Racecar"));
 		//dsf
 
-		//System.out.println("biopsy:" + isAbecedarian("biopsy"));
-		//System.out.println("Yolo: " + isAbecedarian("Yolo"));
+		System.out.println("biopsy:" + isAbecedarian("biopsy"));
+		System.out.println("Yolo: " + isAbecedarian("Yolo"));
 
 
-		//System.out.println(isDupledrome("llaammaa"));
+		System.out.println(isDupledrome("llaammaa"));
 
 		captainCrunch("cDeF", 13);
 
