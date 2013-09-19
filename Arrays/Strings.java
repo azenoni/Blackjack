@@ -98,6 +98,10 @@ public class Strings {
 
 	public static void captainCrunch(String s, int x) {
 		char value;
+<<<<<<< HEAD
+=======
+		char value26 = 26;
+>>>>>>> 6670c6d3c6996cc2fb6517a15cd5346f36d9fb19
 		String finalValue = "";
 
 		System.out.println("Decoded: " + s);
