@@ -1,16 +1,9 @@
 public class Card {
-	private String card;
-	private int number;
-	public Card(String card, int number) {
-		this.card = card;
-		this.number = number;
+	private int value;
+	private String suit;
+	public Card(int value, String suit) {
+		this.value = value;
+		this.suit = suit;
 	}
 
-	public Card(String card){
-		
-	}
-
-
-	Card ace = new Card("Ace", 1);
-	Card two = new Card("Two");
 }
