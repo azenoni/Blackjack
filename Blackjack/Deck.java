@@ -53,4 +53,10 @@ public class Deck {
 			cards[temp] = a;
 		}
 	}
+
+	public void print() {
+		for (int i = 0; i < 52; i++) {
+			cards[i].print();
+		}
+	}
 }

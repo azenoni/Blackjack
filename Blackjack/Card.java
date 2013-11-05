@@ -7,6 +7,7 @@ public class Card {
 		//System.out.println("" + this.value  + " " +this.suit);
 	}
 
-	public void getValue()
-
+	public void print(){
+		System.out.println(value + " " + suit);
+	}
 }
