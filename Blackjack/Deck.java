@@ -1,4 +1,13 @@
 import java.util.Random;
+import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.Rectangle;
+
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
+
 public class Deck {
 	
 	Card[] cards = new Card[52];
@@ -11,7 +20,7 @@ public class Deck {
 			if (h>10) {
 				i = 10;
 			}
-			Card newCard = new Card(i, "Hearts");
+			Card newCard = new Card(i, "Hearts", h);
 			cards[h-1] = newCard;
 		}
 
@@ -20,7 +29,7 @@ public class Deck {
 			if (d>10) {
 				i = 10;
 			}
-			Card newCard = new Card(i, "Diamonds");
+			Card newCard = new Card(i, "Diamonds", d);
 			cards[d + 12] = newCard;
 		}
 
@@ -29,7 +38,7 @@ public class Deck {
 			if (c>10) {
 				i = 10;
 			}
-			Card newCard = new Card(i, "Clubs");
+			Card newCard = new Card(i, "Clubs" , c);
 			cards[c + 25] = newCard;
 		}
 
@@ -38,10 +47,10 @@ public class Deck {
 			if (s>10) {
 				i = 10;
 			}
-			Card newCard = new Card(i, "Spades");
+			Card newCard = new Card(i, "Spades", s);
 			cards[s + 38] = newCard;
 		}
-		shuffle();
+		//shuffle();
 		
 	}
 
@@ -57,6 +66,14 @@ public class Deck {
 	public void print() {
 		for (int i = 0; i < 52; i++) {
 			cards[i].print();
+		}
+	}
+
+	public void draw(Graphics g) {
+		int xOffset = 50;
+		for (int i = 0; i < cards.length; i++) {
+			cards[i].draw(g, new Rectangle(xOffset, 50, 200, 300));
+			xOffset += 25;
 		}
 	}
 }

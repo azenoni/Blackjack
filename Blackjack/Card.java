@@ -12,16 +12,21 @@ public class Card {
 	private String suit;
 	private int value2;
 	private Image image;
-	public Card(int value, String suit) {
+	private int faceNumber;
+	public Card(int value, String suit, int faceNumber) {
 		this.value = value;
 		this.suit = suit;
+		this.faceNumber = faceNumber;
+		this.image = Card.loadImage(getfaceNumber() + suit);
 		//System.out.println("" + this.value  + " " +this.suit);
 	}
 
-	public Card(int value, int value2, String suit) {
+	public Card(int value, int value2, String suit, int faceNumber) {
 		this.suit = suit;
 		this.value = value;
 		this.value2 = value2;
+		this.faceNumber = faceNumber;
+		this.image = Card.loadImage(getfaceNumber() + suit);
 	}
 
 	public int getValue() {
@@ -41,7 +46,7 @@ public class Card {
 	}
 
 	public void print(){
-		System.out.println(value + " " + suit);
+		System.out.println(value + " " + suit + " " + faceNumber);
 	}
 
 
@@ -49,13 +54,33 @@ public class Card {
 		g.drawImage(image, r.x, r.y, r.width, r.height, null);
 	}
 
+	public String getfaceNumber() {
+		if (this.faceNumber == 1) {
+			return "A";
+		} else if (this.faceNumber > 1 && this.faceNumber <= 10) {
+			return "" + this.faceNumber;
+		} else if (this.faceNumber == 11) {
+			return "J";
+		} else if(this.faceNumber == 12) {
+			return "Q";
+		} else if (this.faceNumber ==13) {
+			return "K";
+		}
+		return null;
+	}
+
+	public void setfaceNumber(int faceNumber) {
+		this.faceNumber = faceNumber;
+	}
+
+
 	private static Image loadImage(String name) {
 		String path = null;
 		Image image = null;
 		
 
 		try{
-			 path = "cards" + File.separator + value + name + ".png";
+			 path = "Cards" + File.separator + name + ".png";
 			//path = "imagessdfa" + File.separator + name + ".jpg";
 			// images/JurrsicPark.jpg
 			image = ImageIO.read(new File(path));
