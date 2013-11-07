@@ -10,7 +10,8 @@ public class BlackJackApplet extends Applet {
 	}
 
 	public void paint(Graphics g) {
-		table.draw(g);
+		table.draw(g, 50);
+		table.draw(g, 200);
 	}
 
 }
