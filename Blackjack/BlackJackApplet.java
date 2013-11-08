@@ -11,6 +11,7 @@ public class BlackJackApplet extends Applet {
 
 	public void paint(Graphics g) {
 		table.draw(g, 50);
+		table.shuffle();
 		table.draw(g, 200);
 	}
 
