@@ -69,11 +69,19 @@ public class Deck {
 		}
 	}
 
-	public void draw(Graphics g, int yOffset) {
+	public void draw(Graphics g, int yOffset, int amount) {
 		int xOffset = 50;
-		for (int i = 0; i < cards.length; i++) {
+		for (int i = 0; i < amount; i++) {
 			cards[i].draw(g, new Rectangle(xOffset, yOffset, 200, 300));
 			xOffset += 25;
 		}
 	}
+
+	// public void draw2(Graphics g, int amount) {
+	// 	int xOffset = 50;
+	// 	for (int i = 0; i < amount; i++) {
+	// 		cards[i].draw(g, new Rectangle(xOffset, 50, 200, 300));
+	// 		xOffset += 25;
+	// 	}
+	// }
 }

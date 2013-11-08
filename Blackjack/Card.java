@@ -81,8 +81,6 @@ public class Card {
 
 		try{
 			 path = "Cards" + File.separator + name + ".png";
-			//path = "imagessdfa" + File.separator + name + ".jpg";
-			// images/JurrsicPark.jpg
 			image = ImageIO.read(new File(path));
 		} catch(IOException e) {
 			System.out.println("Could not load image at path: " + path);
