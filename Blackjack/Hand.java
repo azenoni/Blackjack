@@ -6,7 +6,7 @@ public class Hand {
 	private int total;
 	private int temp;
 	private int number;
-	private int a;
+	private int xOffset = 25;
 
 	public Hand(Deck cards) {
 		this.cards = cards;
@@ -26,8 +26,15 @@ public class Hand {
 		// }
 	}
 
-	public void deal (Graphics g) {
-		cards.draw(g , 50, 2);
-		cards.draw(g , 300, 1);
+	public void dealPlayer (Graphics g , int number) {
+		xOffset += 50;
+		cards.draw(g , xOffset, 25, number);
+		//xOffset += 25;
+	}
+
+	public void dealDealer(Graphics g, int number) {
+		xOffset += 50;
+		cards.draw(g, xOffset, 500, number);
+		//xOffset += 25;
 	}
 }

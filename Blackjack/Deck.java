@@ -8,10 +8,14 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+
 public class Deck {
 	
 	Card[] cards = new Card[52];
 	Random random = new Random();
+	int loc = 0;
+	int total = 0;
+	//int xOffset = 50;
 
 	public Deck() {
 
@@ -69,11 +73,25 @@ public class Deck {
 		}
 	}
 
-	public void draw(Graphics g, int yOffset, int amount) {
-		int xOffset = 50;
+	public void draw(Graphics g, int xOffset, int yOffset, int amount) {
+		//int total = 0;
 		for (int i = 0; i < amount; i++) {
-			cards[i].draw(g, new Rectangle(xOffset, yOffset, 200, 300));
-			xOffset += 25;
+			if (total > 21) {
+				System.out.println(total);
+			} else {
+				//System.out.println("bust");
+				if (loc > 41) {
+					shuffle();
+					loc = 0;
+				}
+				cards[loc].draw(g, new Rectangle(xOffset, yOffset, 200, 300));
+				total += cards[loc].getValue();
+
+			
+				xOffset += 25;
+				loc++;
+				System.out.println(total);
+			}
 		}
 	}
 
