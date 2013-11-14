@@ -1,29 +1,39 @@
 import java.awt.*;
 public class Hand {
 
-	Card[] maxCards = new Card[11];
+	private Card[] maxCards;
 	private Deck cards;
 	private int total;
 	private int temp;
 	private int number;
 	private int xOffset = 25;
 
-	public Hand(Deck cards) {
+	public Hand(Card firstCard) {
 		this.cards = cards;
-		// for (int i = 0; i < 11; i++) {
-		// 	int[] a = cards[i];
-		// 	maxCards[i] = cards[i];
+		int total;
+		this.maxCards = new Card[11];
+		maxCards[0] = firstCard;
+		// if (hit = 1) {
+		// 	cards.draw(g, xOffset, 500, 1);
+		// 	total += cards.getValue();
 		// }
+		
+	}
 
-		// for (int i = 0; i < 11; i ++) {
-		// 	if (temp > 21) {
-		// 		temp -= number;
-		// 		total = temp;
-		// 	} else {
-		// 		number = maxCards[i].getValue;
-		// 		temp += number;
-		// 	}
-		// }
+	public void addACard(int x) {
+		if (total < 21) {
+			maxCards[amountOfCards] = x;
+		}
+	}
+
+	public void draw(Graphics g) {	
+		for (int i = 0; i < maxCards.length; i ++) {
+			maxCards[i].draw(g, new Rectangle(xOffset, 50, 200, 300));
+			xOffset += 50;
+		}
+		
+
+
 	}
 
 	public void dealPlayer (Graphics g , int number) {
@@ -37,4 +47,10 @@ public class Hand {
 		cards.draw(g, xOffset, 500, number);
 		//xOffset += 25;
 	}
+
+	// public int hit(Graphics g) {
+	// 	// if () {
+			
+	// 	// }
+	// }
 }

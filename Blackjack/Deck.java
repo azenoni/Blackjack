@@ -15,6 +15,7 @@ public class Deck {
 	Random random = new Random();
 	int loc = 0;
 	int total = 0;
+	int totalcards = 0;
 	//int xOffset = 50;
 
 	public Deck() {
@@ -24,6 +25,9 @@ public class Deck {
 			if (h>10) {
 				i = 10;
 			}
+			// if () {
+				
+			// }
 			Card newCard = new Card(i, "Hearts", h);
 			cards[h-1] = newCard;
 		}
@@ -80,10 +84,7 @@ public class Deck {
 				System.out.println(total);
 			} else {
 				//System.out.println("bust");
-				if (loc > 41) {
-					shuffle();
-					loc = 0;
-				}
+				
 				cards[loc].draw(g, new Rectangle(xOffset, yOffset, 200, 300));
 				total += cards[loc].getValue();
 
@@ -93,6 +94,15 @@ public class Deck {
 				System.out.println(total);
 			}
 		}
+		if (loc > 41) {
+			shuffle();
+			loc = 0;
+		}
+	}
+
+	public Card deal() {
+		totalcards++;
+		return cards[totalcards -1];
 	}
 
 	// public void draw2(Graphics g, int amount) {
