@@ -13,11 +13,17 @@ public class Card {
 	private int value2;
 	private Image image;
 	private int faceNumber;
+	private Image backOfCard;
 	public Card(int value, String suit, int faceNumber) {
 		this.value = value;
 		this.suit = suit;
 		this.faceNumber = faceNumber;
 		this.image = Card.loadImage(getfaceNumber() + suit);
+		this.backOfCard = Card.loadImage("back-blue");
+		value2 = value;
+		if (value == 1) {
+			value2 = 11;
+		}
 		//System.out.println("" + this.value  + " " +this.suit);
 	}
 
@@ -31,6 +37,10 @@ public class Card {
 
 	public int getValue() {
 		return this.value;
+	}
+
+	public int getValue2() {
+		return this.value2;
 	}
 
 	public void setValue(int value) {
@@ -52,6 +62,10 @@ public class Card {
 
 	public void draw(Graphics g, Rectangle r) {
 		g.drawImage(image, r.x, r.y, r.width, r.height, null);
+	}
+
+	public void drawBackOfCard(Graphics g, Rectangle r) {
+		g.drawImage(backOfCard, r.x, r.y, r.width, r.height, null);
 	}
 
 	public String getfaceNumber() {

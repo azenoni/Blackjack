@@ -2,17 +2,12 @@ import java.awt.*;
 public class Hand {
 
 	private Card[] maxCards;
-	private Deck cards;
-	private int total;
-	private int temp;
-	private int number;
-	private int xOffset = 25;
+	private int amountOfCards = 0;
 
-	public Hand(Card firstCard) {
-		this.cards = cards;
-		int total;
+	public Hand() {
+		//this.cards = cards;
+		int total = 0;
 		this.maxCards = new Card[11];
-		maxCards[0] = firstCard;
 		// if (hit = 1) {
 		// 	cards.draw(g, xOffset, 500, 1);
 		// 	total += cards.getValue();
@@ -20,32 +15,64 @@ public class Hand {
 		
 	}
 
-	public void addACard(int x) {
-		if (total < 21) {
-			maxCards[amountOfCards] = x;
-		}
+	public void addACard(Card newCard) {
+		maxCards[amountOfCards] = newCard;
+		amountOfCards++;
 	}
 
-	public void draw(Graphics g) {	
-		for (int i = 0; i < maxCards.length; i ++) {
+
+	public void drawPlayer (Graphics g) {
+		int xOffset = 25;
+		for (int i = 0; i < amountOfCards; i++) {
 			maxCards[i].draw(g, new Rectangle(xOffset, 50, 200, 300));
 			xOffset += 50;
 		}
 		
-
-
+		g.drawString("Total: " + this.getValue(), 40, 370);
 	}
 
-	public void dealPlayer (Graphics g , int number) {
-		xOffset += 50;
-		cards.draw(g , xOffset, 25, number);
-		//xOffset += 25;
+	public void drawDealerFirst(Graphics g) {
+		int xOffset = 25;
+		for (int i = 0; i < amountOfCards; i++) {
+			if (i == 0) {
+				maxCards[i].drawBackOfCard(g, new Rectangle(xOffset, 500, 200, 300));
+
+			} else {
+			maxCards[i].draw(g, new Rectangle(xOffset, 500, 200, 300));
+			}
+			xOffset += 50;
+		}
+		
+		g.drawString("Total: " + this.getValue(), 40, 820);
 	}
 
-	public void dealDealer(Graphics g, int number) {
-		xOffset += 50;
-		cards.draw(g, xOffset, 500, number);
-		//xOffset += 25;
+	public void drawDealer(Graphics g) {
+		int xOffset = 25;
+		for (int i = 0; i < amountOfCards; i++) {
+			
+			maxCards[i].draw(g, new Rectangle(xOffset, 500, 200, 300));
+			
+			xOffset += 50;
+		}
+		
+		g.drawString("Total: " + this.getValue(), 40, 820);
+	}
+
+	public int getValue() {
+		int total = 0;
+		for (int i = 0; i < amountOfCards; i++) {
+			total += maxCards[i].getValue2();
+
+		}
+
+		if (total > 21) {
+			total = 0;
+			for (int i = 0; i < amountOfCards; i++) {
+				total += maxCards[i].getValue();
+			}
+
+		}
+		return total;
 	}
 
 	// public int hit(Graphics g) {
