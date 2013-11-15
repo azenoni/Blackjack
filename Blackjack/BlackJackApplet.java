@@ -19,7 +19,7 @@ public class BlackJackApplet extends Applet {
 		dealer.addACard(table.deal());
 		player.addACard(table.deal());
 		dealer.addACard(table.deal());
-		
+
 			// if (total > 21) {
 			// 	i = 11;
 			// }
@@ -30,7 +30,7 @@ public class BlackJackApplet extends Applet {
 	public void paint(Graphics g) {
 		player.drawPlayer(g);
 
-		dealer.drawDealer(g);
+		dealer.drawDealerFirst(g);
 
 
 	}
