@@ -35,6 +35,10 @@ public class Card {
 		this.image = Card.loadImage(getfaceNumber() + suit);
 	}
 
+	public void switchCardFace() {
+		this.backOfCard = this.image;
+	}
+
 	public int getValue() {
 		return this.value;
 	}

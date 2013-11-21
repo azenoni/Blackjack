@@ -15,6 +15,12 @@ public class Hand {
 		
 	}
 
+	public void addACardDealer(Card newCard) {
+		newCard.switchCardFace();
+		maxCards[amountOfCards] = newCard;
+		amountOfCards++;
+	}
+
 	public void addACard(Card newCard) {
 		maxCards[amountOfCards] = newCard;
 		amountOfCards++;
@@ -43,7 +49,7 @@ public class Hand {
 			xOffset += 50;
 		}
 		
-		g.drawString("Total: " + this.getValue(), 40, 820);
+		//g.drawString("Total: " + this.getValue(), 40, 820);
 	}
 
 	public void drawDealer(Graphics g) {
