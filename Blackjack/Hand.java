@@ -49,7 +49,7 @@ public class Hand {
 			xOffset += 50;
 		}
 		
-		//g.drawString("Total: " + this.getValue(), 40, 820);
+		g.drawString("Total: " + this.getValue(), 40, 820);
 	}
 
 	public void drawDealer(Graphics g) {
