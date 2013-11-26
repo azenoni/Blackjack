@@ -2,7 +2,7 @@ import java.awt.*;
 public class Hand {
 
 	private Card[] maxCards;
-	private int amountOfCards = 0;
+	public int amountOfCards = 0;
 
 	public Hand() {
 		//this.cards = cards;
@@ -34,7 +34,23 @@ public class Hand {
 			xOffset += 50;
 		}
 		
-		g.drawString("Total: " + this.getValue(), 40, 370);
+		// g.drawString("Total: " + this.getValue(), 40, 370);
+	}
+
+	public void drawBacksPlayer(Graphics g) {
+		int xOffset = 25;
+		for (int i = 0; i < amountOfCards; i++) {
+			maxCards[i].drawBackOfCard(g, new Rectangle(xOffset, 50, 200, 300));
+			xOffset+=50;
+		}
+	}
+
+	public void drawBacksDealer(Graphics g) {
+		int xOffset = 25;
+		for (int i = 0; i < amountOfCards; i++) {
+			maxCards[i].drawBackOfCard(g, new Rectangle(xOffset, 500, 200, 300));
+			xOffset+=50;
+		}
 	}
 
 	public void drawDealerFirst(Graphics g) {
@@ -49,7 +65,7 @@ public class Hand {
 			xOffset += 50;
 		}
 		
-		g.drawString("Total: " + this.getValue(), 40, 820);
+		//g.drawString("Total: " + this.getValue(), 40, 820);
 	}
 
 	public void drawDealer(Graphics g) {
@@ -61,7 +77,7 @@ public class Hand {
 			xOffset += 50;
 		}
 		
-		g.drawString("Total: " + this.getValue(), 40, 820);
+		//g.drawString("Total: " + this.getValue(), 40, 820);
 	}
 
 	public int getValue() {

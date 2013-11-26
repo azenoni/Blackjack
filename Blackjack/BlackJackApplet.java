@@ -10,14 +10,18 @@ public class BlackJackApplet extends Applet implements ActionListener {
 	private Hand player;
 	private Hand dealer;
 	private int totalCards;
-	private JButton hit, stay, doubleDown, reset, bet;
-	private JLabel label;
+	private JButton hit, stay, doubleDown, reset, bet, confirmBet;
+	private JLabel label, winner, busted;
 	private int playerSum;
 	private int dealerSum;
 	private int wallet;
 	private int pot;
 	private boolean front = false;
+	private boolean first = true;
 	private String answer;
+	private boolean playerWin;
+	private boolean playerTie;
+	private boolean dealerWin;
 
 	public void init() {
 		//super();
@@ -31,6 +35,15 @@ public class BlackJackApplet extends Applet implements ActionListener {
 		player.addACard(table.deal());
 		dealer.addACard(table.deal());
 
+		wallet = 100;
+		label = new JLabel("You have $" + wallet + " the pot is $" + pot);
+		label.setFont(new Font("Sansserif", Font.BOLD, 32));
+		//label.setVerticalTextPosition(50);
+		this.add(label);
+
+		winner = new JLabel("");
+		winner.setFont(new Font("Sansserif", Font.BOLD, 32));
+		this.add(winner);
 
 
 		// NumberPanel np = new NumberPanel();
@@ -60,6 +73,20 @@ public class BlackJackApplet extends Applet implements ActionListener {
 		bet.addActionListener(this);
 		this.add(bet);
 
+		title = "Confirm Bet";
+		confirmBet = new JButton(title);
+		confirmBet.setActionCommand(title);
+		confirmBet.addActionListener(this);
+		this.add(confirmBet);
+
+		title = "Double Down";
+		doubleDown = new JButton(title);
+		doubleDown.setActionCommand(title);
+		doubleDown.addActionListener(this);
+		this.add(doubleDown);
+
+
+
 		
 	}
 
@@ -72,6 +99,11 @@ public class BlackJackApplet extends Applet implements ActionListener {
 		dealer.addACard(table.deal());
 		this.playerSum = player.getValue();
 		this.dealerSum = dealer.getValue();
+		hit.setEnabled(true);
+		bet.setEnabled(false);
+		confirmBet.setEnabled(false);
+		stay.setEnabled(true);
+		doubleDown.setEnabled(true);
 	}
 
 	public Deck getTable() {
@@ -87,66 +119,136 @@ public class BlackJackApplet extends Applet implements ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent ae) {
-		int dealerSum = dealer.getValue();
-		int playerSum = player.getValue();
+		dealerSum = dealer.getValue();
+		playerSum = player.getValue();
 		answer = "";
 		if ("Hit".equals(ae.getActionCommand())) {
-			
-			if (playerSum < 21) {
-				System.out.println(this.table);
-				System.out.println(this.player);
-				player.addACard(table.deal());
-				//label.setText(value+"");
-				repaint();
-			} else if (playerSum > 21) {
-				this.label = new JLabel("Bust");
-				label.setFont(new Font("sansserif", Font.BOLD, 32));
-				this.add(label);
-			}
-			if (playerSum > 21) {
-				answer = "Bust"
-			} else if () {
-				
-			}
+			hit();
 			
 		} else if ("Stay".equals(ae.getActionCommand())) {
-			front = true;
-			while (dealerSum < 17 && dealerSum < playerSum) {
-				
-				dealer.addACardDealer(table.deal());
-				dealerSum = dealer.getValue();
-				//dealerSum += dealer.getValue();
-				repaint();
-			}
-			//repaint();
+			stay();
 		}
 
 		if ("New Game".equals(ae.getActionCommand())) {
+			dealerSum = 0;
 			front = false;
-			initialDeal();
+			first = true;
+			dealer.amountOfCards = 2;
+			player.amountOfCards = 2;
+			//initialDeal();
+			//repaint();
+			winner.setText("");
+			first = true;
+			playerWin = false;
+			playerTie = false;
+			dealerWin = false;
 			repaint();
+			// hit.setEnabled(true);
+			// bet.setEnabled(true);
+			// confirmBet.setEnabled(true);
+			// stay.setEnabled(true);
 		}
 		if ("Bet $10".equals(ae.getActionCommand())) {
 			pot += 20;
 			wallet -=10;
+			label.setText("You have $" + wallet + " the pot is $" + pot);
+		}
+		if ("Confirm Bet".equals(ae.getActionCommand())) {
+			first = false;
+			initialDeal();
+			repaint();
+			winner.setText("");
+		}
+
+		if ("Double Down".equals(ae.getActionCommand())) {
+			wallet -= pot/2;
+			pot += pot;
+			hit();
+			stay();
+			doubleDown.setEnabled(false);
+			label.setText("You have $" + wallet + " the pot is $" + pot);
 		}
 	}
 
+	public void hit() {
+		doubleDown.setEnabled(false);
+		player.addACard(table.deal());
+		playerSum = player.getValue();
+		if (playerSum < 21) {
+			System.out.println(this.table);
+			System.out.println(this.player);
+			
+			repaint();
+		} else {
+			stay();
+		}
+	}
+
+	public void stay() {
+		front = true;
+		hit.setEnabled(false);
+		bet.setEnabled(false);
+		stay.setEnabled(false);
+		confirmBet.setEnabled(false);
+		doubleDown.setEnabled(false);
+		reset.setEnabled(true);
+		while (dealerSum < 17 && dealerSum < playerSum && playerSum < 22) {
+			dealer.addACardDealer(table.deal());
+			dealerSum = dealer.getValue();
+			//dealerSum += dealer.getValue();
+			repaint();
+		}
+		repaint();
+		calculateWinner();
+		if (playerWin == true) {
+			wallet += pot;
+		} else if (playerTie == true) {
+			wallet += pot/2;
+		}
+		pot = 0;
+		label.setText("You have $" + wallet + " the pot is $" + pot);
+		repaint();
+	}
+
 	public void paint(Graphics g) {
+		
 		super.paint(g);
-		player.drawPlayer(g);
-		if (front == true) {
+		if (first == true) {
+			hit.setEnabled(false);
+			stay.setEnabled(false);
+			doubleDown.setEnabled(false);
+			reset.setEnabled(false);
+			bet.setEnabled(true);
+			confirmBet.setEnabled(true);
+			player.drawBacksPlayer(g);
+			dealer.drawBacksDealer(g);
+		} else if (front == true) {
+			player.drawPlayer(g);
 			dealer.drawDealer(g);
 		} else {
+			player.drawPlayer(g);
 			dealer.drawDealerFirst(g);
 		}
+		if (playerWin == true) {
+			g.drawString("You Win!" , 40, 370);	
+		} else if (dealerWin == true) {
+			g.drawString("You Lost" , 40, 370);
+		} else if (playerTie == true) {
+			g.drawString("Tie. Money Back", 40, 370);
+		}
+			
 		
+	}
 
-		
+	public void calculateWinner() {
 
-		
-
-
+		if ((player.getValue() > dealer.getValue() && player.getValue() < 22) || (dealer.getValue() > 21 && player.getValue() < 22)) {
+			playerWin = true;
+		} else if(player.getValue() == dealer.getValue() && player.getValue() < 22) {
+			playerTie = true;
+		} else {
+			dealerWin = true;	
+		}
 	}
 
 	// public void paintBust(Graphics g) {
