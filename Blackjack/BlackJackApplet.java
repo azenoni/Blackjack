@@ -34,7 +34,7 @@ public class BlackJackApplet extends Applet implements ActionListener {
 		player.addACard(table.deal());
 		dealer.addACard(table.deal());
 
-		wallet = 100;
+		wallet = 1000;
 		label = new JLabel("You have $" + wallet + " the pot is $" + pot);
 		label.setFont(new Font("Sansserif", Font.BOLD, 32));
 		this.add(label);
@@ -125,7 +125,6 @@ public class BlackJackApplet extends Applet implements ActionListener {
 			first = true;
 			dealer.amountOfCards = 2;
 			player.amountOfCards = 2;	
-			winner.setText("");
 			first = true;
 			playerWin = false;
 			playerTie = false;
@@ -141,7 +140,6 @@ public class BlackJackApplet extends Applet implements ActionListener {
 			first = false;
 			initialDeal();
 			repaint();
-			winner.setText("");
 		}
 
 		if ("Double Down".equals(ae.getActionCommand())) {
