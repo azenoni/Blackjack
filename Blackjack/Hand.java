@@ -5,21 +5,12 @@ public class Hand {
 	public int amountOfCards = 0;
 
 	public Hand() {
-		//this.cards = cards;
 		int total = 0;
 		this.maxCards = new Card[11];
-		// if (hit = 1) {
-		// 	cards.draw(g, xOffset, 500, 1);
-		// 	total += cards.getValue();
-		// }
+		
 		
 	}
 
-	public void addACardDealer(Card newCard) {
-		newCard.switchCardFace();
-		maxCards[amountOfCards] = newCard;
-		amountOfCards++;
-	}
 
 	public void addACard(Card newCard) {
 		maxCards[amountOfCards] = newCard;
@@ -34,7 +25,6 @@ public class Hand {
 			xOffset += 50;
 		}
 		
-		// g.drawString("Total: " + this.getValue(), 40, 370);
 	}
 
 	public void drawBacksPlayer(Graphics g) {
@@ -65,7 +55,6 @@ public class Hand {
 			xOffset += 50;
 		}
 		
-		//g.drawString("Total: " + this.getValue(), 40, 820);
 	}
 
 	public void drawDealer(Graphics g) {
@@ -77,7 +66,6 @@ public class Hand {
 			xOffset += 50;
 		}
 		
-		//g.drawString("Total: " + this.getValue(), 40, 820);
 	}
 
 	public int getValue() {
@@ -96,10 +84,4 @@ public class Hand {
 		}
 		return total;
 	}
-
-	// public int hit(Graphics g) {
-	// 	// if () {
-			
-	// 	// }
-	// }
 }

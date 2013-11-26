@@ -24,7 +24,6 @@ public class Card {
 		if (value == 1) {
 			value2 = 11;
 		}
-		//System.out.println("" + this.value  + " " +this.suit);
 	}
 
 	public Card(int value, int value2, String suit, int faceNumber) {
